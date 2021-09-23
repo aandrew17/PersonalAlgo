@@ -8,7 +8,7 @@ class TakeSkip {
 
 
     public static int[] takeSkip(int[] array, int take, int skip) {
-        int[] out = new int[array.length];
+        int[] out = new int[outLength(array, take, skip)];
         int j = 0;
         int i = 0;
         Boolean boolTake = true;
@@ -29,5 +29,12 @@ class TakeSkip {
             }
         }
         return out;
+    }
+    
+    private static int outLength(int[] array, int take, int skip) {
+        int remainder = array.length % (take + skip);
+        int len = array.length / (take + skip);
+        int finalLen = take * len + (remainder > take ? take : remainder);
+        return finalLen;
     }
 }
